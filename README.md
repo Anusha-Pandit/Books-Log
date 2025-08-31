@@ -16,7 +16,3 @@ A web application to manage a personal book collection. Users can **add, edit, v
 - **Backend:** Node.js, Express.js
 - **Frontend:** EJS, HTML, CSS
 - **Database:** PostgreSQL
-
-## License
-
-MIT License
