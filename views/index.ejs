@@ -1,0 +1,45 @@
+<%- include('partials/header.ejs'); -%>
+
+<div class="container">
+  <div class="title">
+    <h1>My Book Collection</h1>
+  </div>
+
+  <div class="add-btn-container">
+    <form action="/new" method="get"> 
+      <button class="btn primary-btn" type="submit">Add a Book</button>
+    </form>
+  </div>
+
+  <div class="book-list">
+    <% for (let list of listBook) { %>
+      <div class="book-card">
+        <% if (list.cover) { %>
+  <img class="book-cover" src="data:image/jpeg;base64,<%= list.cover.toString('base64') %>" alt="Cover for <%= list.title %>">
+<% } else { %>
+  <div class="no-cover">Cover Not Available</div>
+<% } %>
+
+
+
+        <div class="book-details">
+          <h2 class="book-title"><%= list.title %></h2>
+          <h3 class="book-author">by <%= list.author %></h3>
+          <p class="book-desc"><%= list.description %></p>
+
+          <div class="btn-group">
+            <!-- 🖊️ Edit Button -->
+            <a href="/edit/<%= list.id %>" class="btn edit-btn">Edit</a>
+
+            <!-- 🗑️ Delete Button -->
+            <form action="/delete/<%= list.id %>" method="POST" style="display:inline;">
+              <button type="submit" class="btn danger-btn">Delete</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include('partials/footer.ejs'); -%>

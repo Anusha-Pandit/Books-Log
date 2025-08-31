@@ -1,0 +1,38 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container book-form-page">
+  <h2 class="title">
+    <%= isEdit ? "✏️ Edit Book" : "📖 Add a New Book" %>
+  </h2>
+
+<form action="<%= isEdit ? '/edit/' + book.id : '/new' %>" method="POST" enctype="multipart/form-data">
+    <div class="form">
+      <label for="title">Book Title</label>
+      <input class="input" type="text" name="title" placeholder="Enter book title..." value="<%= book ? book.title : '' %>" required>
+    </div>
+
+    <div class="form">
+      <label for="author">Author</label>
+      <input class="input" type="text" name="author" placeholder="Enter author's name..." value="<%= book ? book.author : '' %>" required>
+    </div>
+
+    <div class="form">
+      <label for="description">Description</label>
+      <textarea class="input" name="description" rows="4" placeholder="Write a short description..." required><%= book ? book.description : '' %></textarea>
+    </div>
+
+    <div class="form">
+      <label for="coverUrl">Cover Image URL (Optional)</label>
+      <input class="input" type="file" name="cover" placeholder="Paste image URL here" accepet="image/*" value="<%= book ? book.cover : '' %>">
+    </div>
+
+    <div class="btn-group">
+      <button type="submit" class="primary-btn">
+        <%= isEdit ? "Update Book" : "Add Book" %>
+      </button>
+      <a href="/" class="primary-btn cancel-btn">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer.ejs') %>
